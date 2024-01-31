@@ -1,0 +1,12 @@
+version: Compose specification
+
+service:
+    blog-go:
+        build: .
+
+networks:
+    blog-go-net:
+        name: blog-go-net
+        ipam:
+            config:
+                -   subnet: 172.16.238.0/24
