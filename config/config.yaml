@@ -1,0 +1,3 @@
+#db:
+#    driver: postgres # Value: postgres, sqlite, default: sqlite
+#    dsn: postgres://pgadmin:password@localhost:5432/blog
