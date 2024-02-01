@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/pplmx/blog-go/internal"
 	"github.com/spf13/viper"
 	"os"
 
@@ -21,6 +22,9 @@ var rootCmd = &cobra.Command{
 	- Categories management
 	- Comments management
 `,
+	Run: func(cmd *cobra.Command, args []string) {
+		internal.StartServer()
+	},
 }
 
 func Execute() {

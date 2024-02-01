@@ -8,12 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- support some features
+- introduce cobra and viper
+- introduce fiber
 
 ### Changed
 
-- change some existed behaviors/logic
-
 ### Fixed
-
-- fix some bugs
