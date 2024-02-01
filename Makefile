@@ -1,7 +1,8 @@
-.PHONY: help
+.PHONY: help image run build
 .DEFAULT_GOAL := help
 
-APP_NAME := go
+APP_NAME=blog-go
+APP_PATH=.
 
 # build image
 image:
@@ -9,7 +10,11 @@ image:
 
 # run
 run:
-	@go run src/main.go
+	@go run $(APP_PATH)/main.go
+
+# build
+build:
+	@mkdir -p bin && go build -trimpath -ldflags="-w -s" -o bin/ $(APP_PATH)
 
 # Show help
 help:

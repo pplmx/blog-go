@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/pplmx/blog-go/src/cmd"
+	"github.com/pplmx/blog-go/cmd"
 )
 
 func main() {
