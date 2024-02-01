@@ -16,6 +16,10 @@ run:
 build:
 	@mkdir -p bin && go build -trimpath -ldflags="-w -s" -o bin/ $(APP_PATH)
 
+# test
+test:
+	@go test -v ./...
+
 # Show help
 help:
 	@echo ""
