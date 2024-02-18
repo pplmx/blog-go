@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"github.com/bytedance/sonic"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 	"github.com/gofiber/fiber/v2/middleware/cache"
@@ -13,13 +12,13 @@ import (
 func StartServer() {
 	// use sonic
 	// https://docs.gofiber.io/guide/faster-fiber
-	app := fiber.New(fiber.Config{
-		JSONEncoder: sonic.Marshal,
-		JSONDecoder: sonic.Unmarshal,
-	})
+	// app := fiber.New(fiber.Config{
+	// 	JSONEncoder: sonic.Marshal,
+	// 	JSONDecoder: sonic.Unmarshal,
+	// })
 
 	// use std lib
-	// app := fiber.New()
+	app := fiber.New()
 
 	// load middleware
 	app.Use(
