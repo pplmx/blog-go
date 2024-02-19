@@ -2,14 +2,13 @@ package internal
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/log"
 	"github.com/gofiber/fiber/v2/middleware/cache"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/healthcheck"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-func StartServer() {
+func NewFiberApp() *fiber.App {
 	app := fiber.New()
 
 	// load middleware
@@ -35,5 +34,5 @@ func StartServer() {
 		return c.SendString("Hello, World, v2!")
 	})
 
-	log.Fatal(app.Listen(":3000"))
+	return app
 }

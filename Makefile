@@ -1,8 +1,16 @@
-.PHONY: help image run build
+.PHONY: help wire gen image run build test
 .DEFAULT_GOAL := help
 
 APP_NAME=blog-go
 APP_PATH=.
+
+# wire init
+wire:
+	@cd cmd; wire
+
+# gen, if wire_gen.go is not exist, run wire; if wire_gen.go is exist, run go generate
+gen:
+	@go generate ./...
 
 # build image
 image:

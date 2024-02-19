@@ -14,7 +14,7 @@ var (
 	once sync.Once
 )
 
-func DB() *gorm.DB {
+func NewDB() *gorm.DB {
 	once.Do(func() {
 		driver := viper.GetString("db.driver")
 		dsn := viper.GetString("db.dsn")

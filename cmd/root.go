@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/pplmx/blog-go/internal"
 	"github.com/spf13/viper"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -23,7 +23,8 @@ var rootCmd = &cobra.Command{
 	- Comments management
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		internal.StartServer()
+		app := NewApp()
+		log.Fatal(app.Listen(":3000"))
 	},
 }
 
