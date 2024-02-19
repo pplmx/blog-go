@@ -1,6 +1,6 @@
 module github.com/pplmx/blog-go
 
-go 1.21
+go 1.22
 
 require (
 	github.com/glebarez/sqlite v1.10.0

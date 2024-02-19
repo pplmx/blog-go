@@ -10,14 +10,6 @@ import (
 )
 
 func StartServer() {
-	// use sonic
-	// https://docs.gofiber.io/guide/faster-fiber
-	// app := fiber.New(fiber.Config{
-	// 	JSONEncoder: sonic.Marshal,
-	// 	JSONDecoder: sonic.Unmarshal,
-	// })
-
-	// use std lib
 	app := fiber.New()
 
 	// load middleware
