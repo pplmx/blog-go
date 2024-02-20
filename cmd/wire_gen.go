@@ -19,7 +19,11 @@ import (
 // Injectors from wire.go:
 
 func NewApp() *fiber.App {
-	app := internal.NewFiberApp()
+	gormDB := db.NewDBConn()
+	postRepository := repository.NewPostRepository(gormDB)
+	postService := service.NewPostService(postRepository)
+	postController := controller.NewPostController(postService)
+	app := internal.NewFiberApp(postController)
 	return app
 }
 
