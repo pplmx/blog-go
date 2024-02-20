@@ -25,7 +25,7 @@ func NewApp() *fiber.App {
 
 // wire.go:
 
-var repositoryProviderSet = wire.NewSet(db.NewDB, repository.NewPostRepository)
+var repositoryProviderSet = wire.NewSet(db.NewDBConn, repository.NewPostRepository)
 
 var serviceProviderSet = wire.NewSet(service.NewPostService)
 

@@ -14,7 +14,7 @@ import (
 )
 
 var repositoryProviderSet = wire.NewSet(
-	db.NewDB,
+	db.NewDBConn,
 	repository.NewPostRepository,
 )
 
