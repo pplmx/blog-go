@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/pplmx/blog-go/internal/model"
 	"github.com/pplmx/blog-go/internal/repository"
 )
 
@@ -13,6 +14,10 @@ func NewPostService(repo *repository.PostRepository) *PostService {
 	return &PostService{repo: repo}
 }
 
-func (s *PostService) CreatePost() error {
+func (s *PostService) CreatePosts() error {
 	return s.repo.Create()
+}
+
+func (s *PostService) GetPosts() ([]*model.Post, error) {
+	return s.repo.GetAll()
 }

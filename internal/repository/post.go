@@ -16,3 +16,9 @@ func NewPostRepository(db *gorm.DB) *PostRepository {
 func (r *PostRepository) Create() error {
 	return r.db.Create(&model.Post{}).Error
 }
+
+func (r *PostRepository) GetAll() ([]*model.Post, error) {
+	var posts []*model.Post
+	err := r.db.Find(&posts).Error
+	return posts, err
+}

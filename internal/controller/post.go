@@ -14,9 +14,17 @@ func NewPostController(service *service.PostService) *PostController {
 }
 
 func (c *PostController) CreatePosts(ctx *fiber.Ctx) error {
-	return ctx.SendString("CreatePosts")
+	err := c.service.CreatePosts()
+	if err != nil {
+		return ctx.Status(500).SendString(err.Error())
+	}
+	return ctx.Status(201).SendString("Post created")
 }
 
 func (c *PostController) GetPosts(ctx *fiber.Ctx) error {
-	return ctx.SendString("GetPosts")
+	posts, err := c.service.GetPosts()
+	if err != nil {
+		return ctx.Status(500).SendString(err.Error())
+	}
+	return ctx.JSON(posts)
 }
