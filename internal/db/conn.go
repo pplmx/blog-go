@@ -2,6 +2,7 @@ package db
 
 import (
 	"github.com/glebarez/sqlite"
+	"github.com/pplmx/blog-go/internal/model"
 	"github.com/spf13/viper"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -26,16 +27,29 @@ func NewDBConn() *gorm.DB {
 	return db
 }
 
-func connect(driver, dsn string) (*gorm.DB, error) {
+func connect(driver, dsn string) (db *gorm.DB, err error) {
 	switch driver {
 	case "sqlite3", "sqlite":
-		return connectSQLite(dsn)
+		db, err = connectSQLite(dsn)
 	case "postgres":
-		return connectPostgres(dsn)
+		db, err = connectPostgres(dsn)
 	default:
 		// use sqlite as default
-		return connectSQLite(dsn)
+		db, err = connectSQLite(dsn)
 	}
+	if err != nil {
+		return nil, err
+	}
+
+	// migrate schema
+	tables := []interface{}{
+		&model.Post{},
+	}
+	err = db.AutoMigrate(tables...)
+	if err != nil {
+		return db, err
+	}
+	return db, nil
 }
 
 func connectSQLite(dsn string) (*gorm.DB, error) {
