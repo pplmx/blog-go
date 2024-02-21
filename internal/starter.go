@@ -6,14 +6,13 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/healthcheck"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/gofiber/fiber/v2/middleware/pprof"
 	"github.com/pplmx/blog-go/internal/controller"
 )
 
-type controllers struct {
-	post *controller.PostController
-}
-
-func NewFiberApp(postController *controller.PostController) *fiber.App {
+func NewFiberApp(
+	postController *controller.PostController,
+) *fiber.App {
 	app := fiber.New()
 
 	// load middleware
@@ -22,6 +21,7 @@ func NewFiberApp(postController *controller.PostController) *fiber.App {
 		cors.New(),
 		cache.New(),
 		logger.New(),
+		pprof.New(),
 	)
 
 	// load router
