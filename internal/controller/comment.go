@@ -20,17 +20,17 @@ func (c *CommentController) CreateComment(ctx *fiber.Ctx) error {
 	var comment model.Comment
 	err := ctx.BodyParser(&comment)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	err = c.service.CreateComment(&comment)
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
-	return ctx.Status(201).SendString("Comment created")
+	return ctx.Status(fiber.StatusCreated).SendString("Comment created")
 }
 
 func (c *CommentController) GetCommentsByPostID(ctx *fiber.Ctx) error {
@@ -38,7 +38,7 @@ func (c *CommentController) GetCommentsByPostID(ctx *fiber.Ctx) error {
 	postID := ctx.Query("postID")
 	pid, err := strconv.Atoi(postID)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// validate the query parameter
@@ -47,7 +47,7 @@ func (c *CommentController) GetCommentsByPostID(ctx *fiber.Ctx) error {
 	// call the service method
 	comments, err := c.service.GetCommentsByPostID(uint(pid))
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
@@ -59,15 +59,15 @@ func (c *CommentController) DeleteComment(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 	i, err := strconv.Atoi(id)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	err = c.service.DeleteComment(uint(i))
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
-	return ctx.Status(204).SendString("Comment deleted")
+	return ctx.Status(fiber.StatusNoContent).SendString("Comment deleted")
 }

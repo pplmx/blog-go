@@ -20,17 +20,17 @@ func (c *TagController) CreateTag(ctx *fiber.Ctx) error {
 	var tag model.Tag
 	err := ctx.BodyParser(&tag)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	err = c.service.CreateTag(&tag)
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
-	return ctx.Status(201).SendString("Tag created")
+	return ctx.Status(fiber.StatusCreated).SendString("Tag created")
 }
 
 func (c *TagController) GetTagByID(ctx *fiber.Ctx) error {
@@ -38,13 +38,13 @@ func (c *TagController) GetTagByID(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 	i, err := strconv.Atoi(id)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	tag, err := c.service.GetTagByID(uint(i))
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
@@ -61,7 +61,7 @@ func (c *TagController) GetTagByName(ctx *fiber.Ctx) error {
 	// call the service method
 	tag, err := c.service.GetTagByName(name)
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
@@ -73,24 +73,24 @@ func (c *TagController) DeleteTag(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 	i, err := strconv.Atoi(id)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	err = c.service.DeleteTag(uint(i))
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
-	return ctx.Status(200).SendString("Tag deleted")
+	return ctx.Status(fiber.StatusNoContent).SendString("Tag deleted")
 }
 
 func (c *TagController) GetAllTags(ctx *fiber.Ctx) error {
 	// call the service method
 	tags, err := c.service.GetAllTags()
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response

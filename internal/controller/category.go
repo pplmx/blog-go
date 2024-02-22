@@ -20,17 +20,17 @@ func (c *CategoryController) CreateCategory(ctx *fiber.Ctx) error {
 	var category model.Category
 	err := ctx.BodyParser(&category)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	err = c.service.CreateCategory(&category)
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
-	return ctx.Status(201).SendString("Category created")
+	return ctx.Status(fiber.StatusCreated).SendString("Category created")
 }
 
 func (c *CategoryController) GetCategoryByID(ctx *fiber.Ctx) error {
@@ -38,13 +38,13 @@ func (c *CategoryController) GetCategoryByID(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 	i, err := strconv.Atoi(id)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	category, err := c.service.GetCategoryByID(uint(i))
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
@@ -61,7 +61,7 @@ func (c *CategoryController) GetCategoryByName(ctx *fiber.Ctx) error {
 	// call the service method
 	category, err := c.service.GetCategoryByName(name)
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
@@ -73,24 +73,24 @@ func (c *CategoryController) DeleteCategory(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 	i, err := strconv.Atoi(id)
 	if err != nil {
-		return ctx.Status(400).SendString(err.Error())
+		return ctx.Status(fiber.StatusBadRequest).SendString(err.Error())
 	}
 
 	// call the service method
 	err = c.service.DeleteCategory(uint(i))
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
-	return ctx.Status(200).SendString("Category deleted")
+	return ctx.Status(fiber.StatusNoContent).SendString("Category deleted")
 }
 
 func (c *CategoryController) GetAllCategories(ctx *fiber.Ctx) error {
 	// call the service method
 	categories, err := c.service.GetAllCategories()
 	if err != nil {
-		return ctx.Status(500).SendString(err.Error())
+		return ctx.Status(fiber.StatusInternalServerError).SendString(err.Error())
 	}
 
 	// send the response
