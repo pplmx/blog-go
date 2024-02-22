@@ -23,19 +23,28 @@ func NewApp() *fiber.App {
 	postRepository := repository.NewPostRepository(gormDB)
 	postService := service.NewPostService(postRepository)
 	postController := controller.NewPostController(postService)
-	app := internal.NewFiberApp(postController)
+	commentRepository := repository.NewCommentRepository(gormDB)
+	commentService := service.NewCommentService(commentRepository)
+	commentController := controller.NewCommentController(commentService)
+	tagRepository := repository.NewTagRepository(gormDB)
+	tagService := service.NewTagService(tagRepository)
+	tagController := controller.NewTagController(tagService)
+	categoryRepository := repository.NewCategoryRepository(gormDB)
+	categoryService := service.NewCategoryService(categoryRepository)
+	categoryController := controller.NewCategoryController(categoryService)
+	app := internal.NewFiberApp(postController, commentController, tagController, categoryController)
 	return app
 }
 
 // wire.go:
 
-var repositoryProviderSet = wire.NewSet(db.NewDBConn, repository.NewPostRepository)
+var repositoryProviderSet = wire.NewSet(repository.NewCategoryRepository, repository.NewCommentRepository, repository.NewPostRepository, repository.NewTagRepository)
 
-var serviceProviderSet = wire.NewSet(service.NewPostService)
+var serviceProviderSet = wire.NewSet(service.NewCategoryService, service.NewCommentService, service.NewPostService, service.NewTagService)
 
-var controllerProviderSet = wire.NewSet(controller.NewPostController)
+var controllerProviderSet = wire.NewSet(controller.NewCategoryController, controller.NewCommentController, controller.NewPostController, controller.NewTagController)
 
-var providerSet = wire.NewSet(internal.NewFiberApp, repositoryProviderSet,
+var providerSet = wire.NewSet(db.NewDBConn, internal.NewFiberApp, repositoryProviderSet,
 	serviceProviderSet,
 	controllerProviderSet,
 )

@@ -14,19 +14,28 @@ import (
 )
 
 var repositoryProviderSet = wire.NewSet(
-	db.NewDBConn,
+	repository.NewCategoryRepository,
+	repository.NewCommentRepository,
 	repository.NewPostRepository,
+	repository.NewTagRepository,
 )
 
 var serviceProviderSet = wire.NewSet(
+	service.NewCategoryService,
+	service.NewCommentService,
 	service.NewPostService,
+	service.NewTagService,
 )
 
 var controllerProviderSet = wire.NewSet(
+	controller.NewCategoryController,
+	controller.NewCommentController,
 	controller.NewPostController,
+	controller.NewTagController,
 )
 
 var providerSet = wire.NewSet(
+	db.NewDBConn,
 	internal.NewFiberApp,
 	repositoryProviderSet,
 	serviceProviderSet,

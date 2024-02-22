@@ -7,7 +7,6 @@ import (
 
 type PostService struct {
 	repo *repository.PostRepository
-	// if needed, add much more other repos or service directly
 }
 
 func NewPostService(repo *repository.PostRepository) *PostService {
@@ -15,9 +14,39 @@ func NewPostService(repo *repository.PostRepository) *PostService {
 }
 
 func (s *PostService) CreatePosts() error {
-	return s.repo.Create()
+	return s.repo.Save(&model.Post{})
 }
 
-func (s *PostService) GetPosts() ([]*model.Post, error) {
+func (s *PostService) CreatePost(post *model.Post) error {
+	// validate post data
+	// add business logic
+	// call repo.Create(post)
+	return s.repo.Save(post)
+}
+
+func (s *PostService) GetPostByID(id uint) (*model.Post, error) {
+	// validate id
+	// call repo.GetByID(id)
+	// add business logic
+	return s.repo.GetByID(id)
+}
+
+func (s *PostService) UpdatePost(post *model.Post) error {
+	// validate post data
+	// call repo.Update(post)
+	// add business logic
+	return s.repo.Save(post)
+}
+
+func (s *PostService) DeletePost(id uint) error {
+	// validate id
+	// call repo.Delete(id)
+	// add business logic
+	return s.repo.Delete(id)
+}
+
+func (s *PostService) GetAllPosts() ([]*model.Post, error) {
+	// call repo.GetAll()
+	// add business logic
 	return s.repo.GetAll()
 }
