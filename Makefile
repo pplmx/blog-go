@@ -7,11 +7,6 @@ APP_PATH=.
 # init
 init:
 	@go install github.com/google/wire/cmd/wire@latest
-	@go install github.com/swaggo/swag/cmd/swag@latest
-
-# swagger init, run it under the dir where is the main.go
-swagger:
-	@swag init
 
 # wire init
 wire:

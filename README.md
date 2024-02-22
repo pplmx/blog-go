@@ -20,6 +20,9 @@ Technologies used:
 # initialize the project
 make init
 
+# if running for the first time, or pull the latest commit
+make wire
+
 # run the server
 make run
 
