@@ -20,11 +20,11 @@ func NewFiberApp(
 
 	// load middleware
 	app.Use(
-		healthcheck.New(), // /livez and /readyz
+		healthcheck.New(), // api: /livez and /readyz
 		cors.New(),
 		cache.New(),
 		logger.New(),
-		pprof.New(), // /debug/pprof
+		pprof.New(), // api: /debug/pprof
 	)
 
 	// load router
