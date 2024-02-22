@@ -20,7 +20,8 @@ Technologies used:
 # initialize the project
 make init
 
-# if running for the first time, or pull the latest commit
+# if you add new repository, or service, or anything that needs to be wired
+# if you just want to run the server, you don't need to
 make wire
 
 # run the server
