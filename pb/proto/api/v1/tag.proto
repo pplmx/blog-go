@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package api.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+
+service TagService {
+  rpc CreateTag(CreateTagRequest) returns (CreateTagResponse) {
+    option (google.api.http) = {
+      post: "/v1/tags"
+      body: "*"
+    };
+  }
+
+  rpc GetTag(GetTagRequest) returns (GetTagResponse) {
+    option (google.api.http) = {get: "/v1/tags/{id}"};
+  }
+
+  rpc ListTags(ListTagsRequest) returns (ListTagsResponse) {
+    option (google.api.http) = {get: "/v1/tags"};
+  }
+
+  rpc UpdateTag(UpdateTagRequest) returns (UpdateTagResponse) {
+    option (google.api.http) = {
+      put: "/v1/tags/{id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteTag(DeleteTagRequest) returns (DeleteTagResponse) {
+    option (google.api.http) = {delete: "/v1/tags/{id}"};
+  }
+}
+
+message CreateTagRequest {
+  string name = 1 [(buf.validate.field).string = {
+    min_len: 1,
+    max_len: 255
+  }];
+}
+
+message CreateTagResponse {
+  uint32 id = 1;
+}
+
+message GetTagRequest {
+  uint32 id = 1;
+}
+
+message GetTagResponse {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message ListTagsRequest {}
+
+message ListTagsResponse {
+  repeated Tag tags = 1;
+
+  message Tag {
+    uint32 id = 1;
+    string name = 2;
+  }
+}
+
+message UpdateTagRequest {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message UpdateTagResponse {}
+
+message DeleteTagRequest {
+  uint32 id = 1;
+}
+
+message DeleteTagResponse {}

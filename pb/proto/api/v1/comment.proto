@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package api.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+
+service CommentService {
+  rpc CreateComment(CreateCommentRequest) returns (CreateCommentResponse) {
+    option (google.api.http) = {
+      post: "/v1/comment"
+      body: "*"
+    };
+  }
+}
+
+message CreateCommentRequest {
+  string content = 1 [(buf.validate.field).string = {
+    min_len: 1,
+    max_len: 2000
+  }];
+}
+
+message CreateCommentResponse {
+  string id = 1;
+}

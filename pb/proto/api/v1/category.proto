@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package api.v1;
+
+import "buf/validate/validate.proto";
+import "google/api/annotations.proto";
+
+service CategoryService {
+  rpc CreateCategory(CreateCategoryRequest) returns (CreateCategoryResponse) {
+    option (google.api.http) = {
+      post: "/v1/category"
+      body: "*"
+    };
+  }
+
+  rpc GetCategory(GetCategoryRequest) returns (GetCategoryResponse) {
+    option (google.api.http) = {get: "/v1/category/{id}"};
+  }
+
+  rpc ListCategory(ListCategoryRequest) returns (ListCategoryResponse) {
+    option (google.api.http) = {get: "/v1/category"};
+  }
+
+  rpc UpdateCategory(UpdateCategoryRequest) returns (UpdateCategoryResponse) {
+    option (google.api.http) = {
+      put: "/v1/category/{id}"
+      body: "*"
+    };
+  }
+
+  rpc DeleteCategory(DeleteCategoryRequest) returns (DeleteCategoryResponse) {
+    option (google.api.http) = {delete: "/v1/category/{id}"};
+  }
+}
+
+message CreateCategoryRequest {
+  string name = 1 [(buf.validate.field).string = {
+    min_len: 1,
+    max_len: 255
+  }];
+}
+
+message CreateCategoryResponse {
+  uint32 id = 1;
+}
+
+message GetCategoryRequest {
+  uint32 id = 1;
+}
+
+message GetCategoryResponse {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message ListCategoryRequest {
+  int32 page = 1;
+  int32 limit = 2;
+}
+
+message ListCategoryResponse {
+  repeated Category categories = 1;
+
+  message Category {
+    uint32 id = 1;
+    string name = 2;
+  }
+}
+
+message UpdateCategoryRequest {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message UpdateCategoryResponse {
+  uint32 id = 1;
+}
+
+message DeleteCategoryRequest {
+  uint32 id = 1;
+}
+
+message DeleteCategoryResponse {
+  uint32 id = 1;
+}
