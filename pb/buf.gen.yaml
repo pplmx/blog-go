@@ -2,9 +2,10 @@ version: v1
 managed:
     enabled: true
     go_package_prefix:
-        default: github.com/pplmx/blog-go/gen
+        default: github.com/pplmx/blog-go/pb
         except:
             - buf.build/googleapis/googleapis
+            - buf.build/bufbuild/protovalidate
 plugins:
     -   plugin: buf.build/bufbuild/validate-go
         out: .

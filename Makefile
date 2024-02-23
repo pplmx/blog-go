@@ -16,6 +16,25 @@ wire:
 gen:
 	@go generate ./...
 
+# buf: buf-up buf-lint buf-fmt buf-gen
+buf: buf-up buf-lint buf-fmt buf-gen
+
+# buf format
+buf-fmt:
+	@cd pb; buf format -w
+
+# buf lint
+buf-lint:
+	@cd pb; buf lint
+
+# buf generate
+buf-gen:
+	@cd pb; buf generate
+
+# buf update
+buf-up:
+	@cd pb/proto; buf mod update
+
 # build image
 image:
 	@docker image build -t $(APP_NAME) .
