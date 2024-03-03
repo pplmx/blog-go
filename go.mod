@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/glebarez/sqlite v1.10.0
-	github.com/gofiber/fiber/v2 v2.52.1
+	github.com/gofiber/fiber/v2 v2.52.2
 	github.com/google/wire v0.6.0
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
