@@ -1,10 +1,11 @@
 package controller
 
 import (
+	"strconv"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/pplmx/blog-go/internal/model"
 	"github.com/pplmx/blog-go/internal/service"
-	"strconv"
 )
 
 type CommentController struct {
