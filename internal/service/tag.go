@@ -1,48 +1,52 @@
 package service
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
-	"github.com/pplmx/blog-go/internal/repository"
+	"context"
+
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
+	blogv1 "github.com/pplmx/pb/blog/v1"
 )
 
 type TagService struct {
-	repo *repository.TagRepository
+	blogv1.UnimplementedTagServiceServer
+
+	logger     *log.Logger
+	tagUseCase *biz.TagUseCase
 }
 
-func NewTagService(repo *repository.TagRepository) *TagService {
-	return &TagService{repo: repo}
+func NewTagService(logger *log.Logger, tagUseCase *biz.TagUseCase) *TagService {
+	return &TagService{logger: logger, tagUseCase: tagUseCase}
 }
 
-func (s *TagService) CreateTag(tag *model.Tag) error {
-	// validate tag data
-	// add business logic
-	// call repo.Create(tag)
-	return s.repo.Save(tag)
+func (s *TagService) CreateTag(ctx context.Context, req *blogv1.CreateTagRequest) (*blogv1.CreateTagResponse, error) {
+	resp := &blogv1.CreateTagResponse{}
+
+	// TODO: implement the business logic of CreateTag
+
+	return resp, nil
 }
 
-func (s *TagService) GetTagByID(id uint) (*model.Tag, error) {
-	// validate id
-	// call repo.GetByID(id)
-	// add business logic
-	return s.repo.GetByID(id)
+func (s *TagService) UpdateTag(ctx context.Context, req *blogv1.UpdateTagRequest) (*blogv1.UpdateTagResponse, error) {
+	resp := &blogv1.UpdateTagResponse{}
+
+	// TODO: implement the business logic of UpdateTag
+
+	return resp, nil
 }
 
-func (s *TagService) GetTagByName(name string) (*model.Tag, error) {
-	// validate name
-	// call repo.GetByName(name)
-	// add business logic
-	return s.repo.GetByName(name)
+func (s *TagService) DeleteTag(ctx context.Context, req *blogv1.DeleteTagRequest) (*blogv1.DeleteTagResponse, error) {
+	resp := &blogv1.DeleteTagResponse{}
+
+	// TODO: implement the business logic of DeleteTag
+
+	return resp, nil
 }
 
-func (s *TagService) DeleteTag(id uint) error {
-	// validate id
-	// call repo.Delete(id)
-	// add business logic
-	return s.repo.Delete(id)
-}
+func (s *TagService) ListTags(ctx context.Context, req *blogv1.ListTagsRequest) (*blogv1.ListTagsResponse, error) {
+	resp := &blogv1.ListTagsResponse{}
 
-func (s *TagService) GetAllTags() ([]*model.Tag, error) {
-	// call repo.GetAll()
-	// add business logic
-	return s.repo.GetAll()
+	// TODO: implement the business logic of ListTags
+
+	return resp, nil
 }

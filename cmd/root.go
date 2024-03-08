@@ -2,13 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/viper"
-	"log"
 	"os"
-	"os/signal"
-	"syscall"
 
+	"github.com/go-kratos/kratos/v2/log"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
 )
 
 var cfgFile string
@@ -25,29 +23,19 @@ var rootCmd = &cobra.Command{
 	- Comments management
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		app := NewApp()
-		// log.Fatal(app.Listen(":3000"))
+		logger := log.NewStdLogger(os.Stdout)
+		app, cleanup, err := initApp(logger)
+		if err != nil {
+			panic(err)
+		}
+		defer cleanup()
 
 		// Listen from a different goroutine to allow for graceful shutdown
 		go func() {
-			if err := app.Listen(":3000"); err != nil {
-				log.Panic(err)
+			if err := app.Run(); err != nil {
+				panic(err)
 			}
 		}()
-
-		c := make(chan os.Signal, 1)                    // Create a channel to signify a signal being sent
-		signal.Notify(c, os.Interrupt, syscall.SIGTERM) // When an interrupt or termination signal is sent, notify the channel
-
-		_ = <-c // This blocks the main thread until an interrupt is received
-		fmt.Println("Gracefully shutting down...")
-		_ = app.Shutdown()
-
-		fmt.Println("Running cleanup tasks...")
-
-		// Your cleanup tasks go here
-		// db.Close()
-		// redisConn.Close()
-		fmt.Println("Fiber was successful shutdown.")
 	},
 }
 

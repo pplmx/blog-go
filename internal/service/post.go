@@ -1,52 +1,60 @@
 package service
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
-	"github.com/pplmx/blog-go/internal/repository"
+	"context"
+
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
+	blogv1 "github.com/pplmx/pb/blog/v1"
 )
 
 type PostService struct {
-	repo *repository.PostRepository
+	blogv1.UnimplementedPostServiceServer
+
+	logger      *log.Logger
+	postUseCase *biz.PostUseCase
 }
 
-func NewPostService(repo *repository.PostRepository) *PostService {
-	return &PostService{repo: repo}
+func NewPostService(logger *log.Logger, postUseCase *biz.PostUseCase) *PostService {
+	return &PostService{logger: logger, postUseCase: postUseCase}
 }
 
-func (s *PostService) CreatePosts() error {
-	return s.repo.Save(&model.Post{})
+func (s *PostService) CreatePost(ctx context.Context, req *blogv1.CreatePostRequest) (*blogv1.CreatePostResponse, error) {
+	resp := &blogv1.CreatePostResponse{}
+
+	// TODO: implement the business logic of CreatePost
+
+	return resp, nil
 }
 
-func (s *PostService) CreatePost(post *model.Post) error {
-	// validate post data
-	// add business logic
-	// call repo.Create(post)
-	return s.repo.Save(post)
+func (s *PostService) UpdatePost(ctx context.Context, req *blogv1.UpdatePostRequest) (*blogv1.UpdatePostResponse, error) {
+	resp := &blogv1.UpdatePostResponse{}
+
+	// TODO: implement the business logic of UpdatePost
+
+	return resp, nil
 }
 
-func (s *PostService) GetPostByID(id uint) (*model.Post, error) {
-	// validate id
-	// call repo.GetByID(id)
-	// add business logic
-	return s.repo.GetByID(id)
+func (s *PostService) DeletePost(ctx context.Context, req *blogv1.DeletePostRequest) (*blogv1.DeletePostResponse, error) {
+	resp := &blogv1.DeletePostResponse{}
+
+	// TODO: implement the business logic of DeletePost
+
+	return resp, nil
 }
 
-func (s *PostService) UpdatePost(post *model.Post) error {
-	// validate post data
-	// call repo.Update(post)
-	// add business logic
-	return s.repo.Save(post)
+func (s *PostService) GetPostByID(ctx context.Context, req *blogv1.GetPostByIDRequest) (*blogv1.GetPostByIDResponse, error) {
+	resp := &blogv1.GetPostByIDResponse{}
+
+	// TODO: implement the business logic of GetPostByID
+
+	return resp, nil
 }
 
-func (s *PostService) DeletePost(id uint) error {
-	// validate id
-	// call repo.Delete(id)
-	// add business logic
-	return s.repo.Delete(id)
-}
+func (s *PostService) ListPosts(ctx context.Context, req *blogv1.ListPostsRequest) (*blogv1.ListPostsResponse, error) {
+	resp := &blogv1.ListPostsResponse{}
 
-func (s *PostService) GetAllPosts() ([]*model.Post, error) {
-	// call repo.GetAll()
-	// add business logic
-	return s.repo.GetAll()
+	// TODO: implement the business logic of ListPosts
+
+	return resp, nil
 }

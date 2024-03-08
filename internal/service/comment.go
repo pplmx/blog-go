@@ -1,35 +1,28 @@
 package service
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
-	"github.com/pplmx/blog-go/internal/repository"
+	"context"
+
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
+	blogv1 "github.com/pplmx/pb/blog/v1"
 )
 
 type CommentService struct {
-	repo *repository.CommentRepository
+	blogv1.UnimplementedCommentServiceServer
+
+	logger         *log.Logger
+	commentUseCase *biz.CommentUseCase
 }
 
-func NewCommentService(repo *repository.CommentRepository) *CommentService {
-	return &CommentService{repo: repo}
+func NewCommentService(logger *log.Logger, commentUseCase *biz.CommentUseCase) *CommentService {
+	return &CommentService{logger: logger, commentUseCase: commentUseCase}
 }
 
-func (s *CommentService) CreateComment(comment *model.Comment) error {
-	// validate comment data
-	// add business logic
-	// call repo.Create(comment)
-	return s.repo.Save(comment)
-}
+func (s *CommentService) CreateComment(ctx context.Context, req *blogv1.CreateCommentRequest) (*blogv1.CreateCommentResponse, error) {
+	resp := &blogv1.CreateCommentResponse{}
 
-func (s *CommentService) GetCommentsByPostID(postID uint) ([]*model.Comment, error) {
-	// validate postID
-	// call repo.GetAllByPostID(postID)
-	// add business logic
-	return s.repo.GetAllByPostID(postID)
-}
+	// TODO: implement the business logic of CreateComment
 
-func (s *CommentService) DeleteComment(id uint) error {
-	// validate id
-	// call repo.Delete(id)
-	// add business logic
-	return s.repo.Delete(id)
+	return resp, nil
 }

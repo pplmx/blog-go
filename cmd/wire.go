@@ -4,12 +4,14 @@
 package cmd
 
 import (
-	"github.com/gofiber/fiber/v2"
+	"github.com/go-kratos/kratos/v2"
+	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"
 	"github.com/pplmx/blog-go/internal"
-	"github.com/pplmx/blog-go/internal/controller"
+	"github.com/pplmx/blog-go/internal/biz"
 	"github.com/pplmx/blog-go/internal/db"
 	"github.com/pplmx/blog-go/internal/repository"
+	"github.com/pplmx/blog-go/internal/server"
 	"github.com/pplmx/blog-go/internal/service"
 )
 
@@ -27,22 +29,28 @@ var serviceProviderSet = wire.NewSet(
 	service.NewTagService,
 )
 
-var controllerProviderSet = wire.NewSet(
-	controller.NewCategoryController,
-	controller.NewCommentController,
-	controller.NewPostController,
-	controller.NewTagController,
+var bizProviderSet = wire.NewSet(
+	biz.NewCategoryUseCase,
+	biz.NewCommentUseCase,
+	biz.NewPostUseCase,
+	biz.NewTagUseCase,
+)
+
+var serverProviderSet = wire.NewSet(
+	server.NewHTTPServer,
+	server.NewGRPCServer,
 )
 
 var providerSet = wire.NewSet(
 	db.NewDBConn,
-	internal.NewFiberApp,
+	internal.NewKratosApp,
+	serverProviderSet,
 	repositoryProviderSet,
 	serviceProviderSet,
-	controllerProviderSet,
+	bizProviderSet,
 )
 
-func NewApp() *fiber.App {
-	wire.Build(providerSet)
-	return nil
+// initApp init kratos application.
+func initApp(log.Logger) (*kratos.App, func(), error) {
+	panic(wire.Build(providerSet))
 }

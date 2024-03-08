@@ -1,48 +1,60 @@
 package service
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
-	"github.com/pplmx/blog-go/internal/repository"
+	"context"
+
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
+	blogv1 "github.com/pplmx/pb/blog/v1"
 )
 
 type CategoryService struct {
-	repo *repository.CategoryRepository
+	blogv1.UnimplementedCategoryServiceServer
+
+	logger          *log.Logger
+	categoryUseCase *biz.CategoryUseCase
 }
 
-func NewCategoryService(repo *repository.CategoryRepository) *CategoryService {
-	return &CategoryService{repo: repo}
+func NewCategoryService(logger *log.Logger, categoryUseCase *biz.CategoryUseCase) *CategoryService {
+	return &CategoryService{logger: logger, categoryUseCase: categoryUseCase}
 }
 
-func (s *CategoryService) CreateCategory(category *model.Category) error {
-	// validate category data
-	// add business logic
-	// call repo.Create(category)
-	return s.repo.Save(category)
+func (s *CategoryService) CreateCategory(ctx context.Context, req *blogv1.CreateCategoryRequest) (*blogv1.CreateCategoryResponse, error) {
+	resp := &blogv1.CreateCategoryResponse{}
+
+	// TODO: implement the business logic of CreateCategory
+
+	return resp, nil
 }
 
-func (s *CategoryService) GetCategoryByID(id uint) (*model.Category, error) {
-	// validate id
-	// call repo.GetByID(id)
-	// add business logic
-	return s.repo.GetByID(id)
+func (s *CategoryService) UpdateCategory(ctx context.Context, req *blogv1.UpdateCategoryRequest) (*blogv1.UpdateCategoryResponse, error) {
+	resp := &blogv1.UpdateCategoryResponse{}
+
+	// TODO: implement the business logic of UpdateCategory
+
+	return resp, nil
 }
 
-func (s *CategoryService) GetCategoryByName(name string) (*model.Category, error) {
-	// validate name
-	// call repo.GetByName(name)
-	// add business logic
-	return s.repo.GetByName(name)
+func (s *CategoryService) DeleteCategory(ctx context.Context, req *blogv1.DeleteCategoryRequest) (*blogv1.DeleteCategoryResponse, error) {
+	resp := &blogv1.DeleteCategoryResponse{}
+
+	// TODO: implement the business logic of DeleteCategory
+
+	return resp, nil
 }
 
-func (s *CategoryService) DeleteCategory(id uint) error {
-	// validate id
-	// call repo.Delete(id)
-	// add business logic
-	return s.repo.Delete(id)
+func (s *CategoryService) GetCategory(ctx context.Context, req *blogv1.GetCategoryRequest) (*blogv1.GetCategoryResponse, error) {
+	resp := &blogv1.GetCategoryResponse{}
+
+	// TODO: implement the business logic of GetCategory
+
+	return resp, nil
 }
 
-func (s *CategoryService) GetAllCategories() ([]*model.Category, error) {
-	// call repo.GetAll()
-	// add business logic
-	return s.repo.GetAll()
+func (s *CategoryService) ListCategory(ctx context.Context, req *blogv1.ListCategoryRequest) (*blogv1.ListCategoryResponse, error) {
+	resp := &blogv1.ListCategoryResponse{}
+
+	// TODO: implement the business logic of ListCategory
+
+	return resp, nil
 }
