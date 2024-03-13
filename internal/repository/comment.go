@@ -1,28 +1,39 @@
 package repository
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
 	"gorm.io/gorm"
 )
 
-type CommentRepository struct {
-	db *gorm.DB
+func (r *commentRepository) SaveComment(comment *biz.Comment) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func NewCommentRepository(db *gorm.DB) *CommentRepository {
-	return &CommentRepository{db: db}
+func (r *commentRepository) GetCommentsByID(u uint) ([]*biz.Comment, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CommentRepository) Save(comment *model.Comment) error {
-	return r.db.Save(comment).Error
+func (r *commentRepository) GetPostCommentsByPostID(u uint) ([]*biz.Comment, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CommentRepository) GetAllByPostID(postID uint) ([]*model.Comment, error) {
-	var comments []*model.Comment
-	err := r.db.Where("post_id = ?", postID).Find(&comments).Error
-	return comments, err
+func (r *commentRepository) DeleteComment(u uint) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CommentRepository) Delete(id uint) error {
-	return r.db.Delete(&model.Comment{}, id).Error
+func NewCommentRepository(db *gorm.DB, log *log.Logger) biz.CommentRepo {
+	return &commentRepository{
+		db:  db,
+		log: log,
+	}
+}
+
+type commentRepository struct {
+	db  *gorm.DB
+	log *log.Logger
 }

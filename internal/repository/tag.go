@@ -1,40 +1,49 @@
 package repository
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
 	"gorm.io/gorm"
 )
 
-type TagRepository struct {
-	db *gorm.DB
+func (r *tagRepository) SaveTag(tag *biz.Tag) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func NewTagRepository(db *gorm.DB) *TagRepository {
-	return &TagRepository{db: db}
+func (r *tagRepository) GetTagByID(u uint) (*biz.Tag, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *TagRepository) Save(tag *model.Tag) error {
-	return r.db.Save(tag).Error
+func (r *tagRepository) GetTagByName(s string) (*biz.Tag, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *TagRepository) GetAll() ([]*model.Tag, error) {
-	var tags []*model.Tag
-	err := r.db.Find(&tags).Error
-	return tags, err
+func (r *tagRepository) GetAllTags() ([]*biz.Tag, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *TagRepository) GetByID(id uint) (*model.Tag, error) {
-	var tag model.Tag
-	err := r.db.First(&tag, id).Error
-	return &tag, err
+func (r *tagRepository) DeleteTag(u uint) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *TagRepository) GetByName(name string) (*model.Tag, error) {
-	var tag model.Tag
-	err := r.db.Where("name = ?", name).First(&tag).Error
-	return &tag, err
+func (r *tagRepository) DeleteTagByName(s string) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *TagRepository) Delete(id uint) error {
-	return r.db.Delete(&model.Tag{}, id).Error
+func NewTagRepository(db *gorm.DB, log *log.Logger) biz.TagRepo {
+	return &tagRepository{
+		db:  db,
+		log: log,
+	}
+}
+
+type tagRepository struct {
+	db  *gorm.DB
+	log *log.Logger
 }

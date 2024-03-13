@@ -1,38 +1,49 @@
 package repository
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
 	"gorm.io/gorm"
 )
 
-type PostRepository struct {
-	db *gorm.DB
+func (r *postRepository) SavePost(post *biz.Post) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func NewPostRepository(db *gorm.DB) *PostRepository {
-	return &PostRepository{db: db}
+func (r *postRepository) GetPostByID(u uint) (*biz.Post, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-// Save saves a post with new data, or creates a new post
-func (r *PostRepository) Save(post *model.Post) error {
-	return r.db.Save(post).Error
+func (r *postRepository) GetPostBySlug(s string) (*biz.Post, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-// GetAll returns all posts
-func (r *PostRepository) GetAll() ([]*model.Post, error) {
-	var posts []*model.Post
-	err := r.db.Find(&posts).Error
-	return posts, err
+func (r *postRepository) GetAllPosts() ([]*biz.Post, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-// GetByID returns a post by its ID
-func (r *PostRepository) GetByID(id uint) (*model.Post, error) {
-	var post model.Post
-	err := r.db.First(&post, id).Error
-	return &post, err
+func (r *postRepository) DeletePost(u uint) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-// Delete deletes a post by its ID
-func (r *PostRepository) Delete(id uint) error {
-	return r.db.Delete(&model.Post{}, id).Error
+func (r *postRepository) DeletePostBySlug(s string) error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func NewPostRepository(db *gorm.DB, log *log.Logger) biz.PostRepo {
+	return &postRepository{
+		db:  db,
+		log: log,
+	}
+}
+
+type postRepository struct {
+	db  *gorm.DB
+	log *log.Logger
 }

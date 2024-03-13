@@ -1,40 +1,49 @@
 package repository
 
 import (
-	"github.com/pplmx/blog-go/internal/model"
+	"github.com/go-kratos/kratos/v2/log"
+	"github.com/pplmx/blog-go/internal/biz"
 	"gorm.io/gorm"
 )
 
 type CategoryRepository struct {
-	db *gorm.DB
+	db  *gorm.DB
+	log *log.Logger
 }
 
-func NewCategoryRepository(db *gorm.DB) *CategoryRepository {
-	return &CategoryRepository{db: db}
+func (r *CategoryRepository) SaveCategory(category *biz.Category) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CategoryRepository) Save(category *model.Category) error {
-	return r.db.Save(category).Error
+func (r *CategoryRepository) GetCategoryByID(u uint) (*biz.Category, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CategoryRepository) GetAll() ([]*model.Category, error) {
-	var categories []*model.Category
-	err := r.db.Find(&categories).Error
-	return categories, err
+func (r *CategoryRepository) GetCategoryByName(s string) (*biz.Category, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CategoryRepository) GetByID(id uint) (*model.Category, error) {
-	var category model.Category
-	err := r.db.First(&category, id).Error
-	return &category, err
+func (r *CategoryRepository) GetAllCategories() ([]*biz.Category, error) {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CategoryRepository) GetByName(name string) (*model.Category, error) {
-	var category model.Category
-	err := r.db.Where("name = ?", name).First(&category).Error
-	return &category, err
+func (r *CategoryRepository) DeleteCategory(u uint) error {
+	//TODO implement me
+	panic("implement me")
 }
 
-func (r *CategoryRepository) Delete(id uint) error {
-	return r.db.Delete(&model.Category{}, id).Error
+func (r *CategoryRepository) DeleteCategoryByName(s string) error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func NewCategoryRepository(db *gorm.DB, log *log.Logger) biz.CategoryRepo {
+	return &CategoryRepository{
+		db:  db,
+		log: log,
+	}
 }
