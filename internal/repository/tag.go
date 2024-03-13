@@ -6,6 +6,18 @@ import (
 	"gorm.io/gorm"
 )
 
+type tagRepository struct {
+	db  *gorm.DB
+	log *log.Helper
+}
+
+func NewTagRepository(db *gorm.DB, logger log.Logger) biz.TagRepo {
+	return &tagRepository{
+		db:  db,
+		log: log.NewHelper(logger),
+	}
+}
+
 func (r *tagRepository) SaveTag(tag *biz.Tag) error {
 	//TODO implement me
 	panic("implement me")
@@ -34,16 +46,4 @@ func (r *tagRepository) DeleteTag(u uint) error {
 func (r *tagRepository) DeleteTagByName(s string) error {
 	//TODO implement me
 	panic("implement me")
-}
-
-func NewTagRepository(db *gorm.DB, log *log.Logger) biz.TagRepo {
-	return &tagRepository{
-		db:  db,
-		log: log,
-	}
-}
-
-type tagRepository struct {
-	db  *gorm.DB
-	log *log.Logger
 }

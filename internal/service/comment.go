@@ -11,12 +11,12 @@ import (
 type CommentService struct {
 	blogv1.UnimplementedCommentServiceServer
 
-	logger         *log.Logger
+	log            *log.Helper
 	commentUseCase *biz.CommentUseCase
 }
 
-func NewCommentService(logger *log.Logger, commentUseCase *biz.CommentUseCase) *CommentService {
-	return &CommentService{logger: logger, commentUseCase: commentUseCase}
+func NewCommentService(logger log.Logger, commentUseCase *biz.CommentUseCase) *CommentService {
+	return &CommentService{log: log.NewHelper(logger), commentUseCase: commentUseCase}
 }
 
 func (s *CommentService) CreateComment(ctx context.Context, req *blogv1.CreateCommentRequest) (*blogv1.CreateCommentResponse, error) {

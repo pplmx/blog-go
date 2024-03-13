@@ -11,12 +11,12 @@ import (
 type TagService struct {
 	blogv1.UnimplementedTagServiceServer
 
-	logger     *log.Logger
+	log        *log.Helper
 	tagUseCase *biz.TagUseCase
 }
 
-func NewTagService(logger *log.Logger, tagUseCase *biz.TagUseCase) *TagService {
-	return &TagService{logger: logger, tagUseCase: tagUseCase}
+func NewTagService(logger log.Logger, tagUseCase *biz.TagUseCase) *TagService {
+	return &TagService{log: log.NewHelper(logger), tagUseCase: tagUseCase}
 }
 
 func (s *TagService) CreateTag(ctx context.Context, req *blogv1.CreateTagRequest) (*blogv1.CreateTagResponse, error) {

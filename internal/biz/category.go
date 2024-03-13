@@ -22,13 +22,13 @@ type CategoryRepo interface {
 
 // CategoryUseCase defines the use case for category.
 type CategoryUseCase struct {
-	logger *log.Logger
-	repo   CategoryRepo
+	log  *log.Helper
+	repo CategoryRepo
 }
 
 // NewCategoryUseCase creates a new CategoryUseCase.
-func NewCategoryUseCase(repo CategoryRepo, logger *log.Logger) *CategoryUseCase {
-	return &CategoryUseCase{repo: repo, logger: logger}
+func NewCategoryUseCase(repo CategoryRepo, logger log.Logger) *CategoryUseCase {
+	return &CategoryUseCase{repo: repo, log: log.NewHelper(logger)}
 }
 
 // CreateCategory creates a new category.

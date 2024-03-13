@@ -11,12 +11,12 @@ import (
 type CategoryService struct {
 	blogv1.UnimplementedCategoryServiceServer
 
-	logger          *log.Logger
+	log             *log.Helper
 	categoryUseCase *biz.CategoryUseCase
 }
 
-func NewCategoryService(logger *log.Logger, categoryUseCase *biz.CategoryUseCase) *CategoryService {
-	return &CategoryService{logger: logger, categoryUseCase: categoryUseCase}
+func NewCategoryService(logger log.Logger, categoryUseCase *biz.CategoryUseCase) *CategoryService {
+	return &CategoryService{log: log.NewHelper(logger), categoryUseCase: categoryUseCase}
 }
 
 func (s *CategoryService) CreateCategory(ctx context.Context, req *blogv1.CreateCategoryRequest) (*blogv1.CreateCategoryResponse, error) {

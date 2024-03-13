@@ -6,44 +6,44 @@ import (
 	"gorm.io/gorm"
 )
 
-type CategoryRepository struct {
+type categoryRepository struct {
 	db  *gorm.DB
-	log *log.Logger
+	log *log.Helper
 }
 
-func (r *CategoryRepository) SaveCategory(category *biz.Category) error {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (r *CategoryRepository) GetCategoryByID(u uint) (*biz.Category, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (r *CategoryRepository) GetCategoryByName(s string) (*biz.Category, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (r *CategoryRepository) GetAllCategories() ([]*biz.Category, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (r *CategoryRepository) DeleteCategory(u uint) error {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (r *CategoryRepository) DeleteCategoryByName(s string) error {
-	//TODO implement me
-	panic("implement me")
-}
-
-func NewCategoryRepository(db *gorm.DB, log *log.Logger) biz.CategoryRepo {
-	return &CategoryRepository{
+func NewCategoryRepository(db *gorm.DB, logger log.Logger) biz.CategoryRepo {
+	return &categoryRepository{
 		db:  db,
-		log: log,
+		log: log.NewHelper(logger),
 	}
+}
+
+func (r *categoryRepository) SaveCategory(category *biz.Category) error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *categoryRepository) GetCategoryByID(u uint) (*biz.Category, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *categoryRepository) GetCategoryByName(s string) (*biz.Category, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *categoryRepository) GetAllCategories() ([]*biz.Category, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *categoryRepository) DeleteCategory(u uint) error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (r *categoryRepository) DeleteCategoryByName(s string) error {
+	//TODO implement me
+	panic("implement me")
 }

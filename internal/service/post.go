@@ -11,12 +11,12 @@ import (
 type PostService struct {
 	blogv1.UnimplementedPostServiceServer
 
-	logger      *log.Logger
+	log         *log.Helper
 	postUseCase *biz.PostUseCase
 }
 
-func NewPostService(logger *log.Logger, postUseCase *biz.PostUseCase) *PostService {
-	return &PostService{logger: logger, postUseCase: postUseCase}
+func NewPostService(logger log.Logger, postUseCase *biz.PostUseCase) *PostService {
+	return &PostService{log: log.NewHelper(logger), postUseCase: postUseCase}
 }
 
 func (s *PostService) CreatePost(ctx context.Context, req *blogv1.CreatePostRequest) (*blogv1.CreatePostResponse, error) {

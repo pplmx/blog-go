@@ -23,12 +23,12 @@ type CommentRepo interface {
 
 // CommentUseCase defines the use case for comment.
 type CommentUseCase struct {
-	logger *log.Logger
-	repo   CommentRepo
+	log  *log.Helper
+	repo CommentRepo
 }
 
-func NewCommentUseCase(repo CommentRepo, logger *log.Logger) *CommentUseCase {
-	return &CommentUseCase{repo: repo, logger: logger}
+func NewCommentUseCase(repo CommentRepo, logger log.Logger) *CommentUseCase {
+	return &CommentUseCase{repo: repo, log: log.NewHelper(logger)}
 }
 
 func (uc *CommentUseCase) CreateComment(c *Comment) error {

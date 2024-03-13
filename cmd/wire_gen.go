@@ -7,33 +7,39 @@
 package cmd
 
 import (
-	"github.com/gofiber/fiber/v2"
+	"github.com/go-kratos/kratos/v2"
+	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"
 	"github.com/pplmx/blog-go/internal"
-	"github.com/pplmx/blog-go/internal/controller"
+	"github.com/pplmx/blog-go/internal/biz"
 	"github.com/pplmx/blog-go/internal/db"
 	"github.com/pplmx/blog-go/internal/repository"
+	"github.com/pplmx/blog-go/internal/server"
 	"github.com/pplmx/blog-go/internal/service"
 )
 
 // Injectors from wire.go:
 
-func NewApp() *fiber.App {
+// initApp init kratos application.
+func initApp(logger log.Logger) (*kratos.App, func(), error) {
 	gormDB := db.NewDBConn()
-	postRepository := repository.NewPostRepository(gormDB)
-	postService := service.NewPostService(postRepository)
-	postController := controller.NewPostController(postService)
-	commentRepository := repository.NewCommentRepository(gormDB)
-	commentService := service.NewCommentService(commentRepository)
-	commentController := controller.NewCommentController(commentService)
-	tagRepository := repository.NewTagRepository(gormDB)
-	tagService := service.NewTagService(tagRepository)
-	tagController := controller.NewTagController(tagService)
-	categoryRepository := repository.NewCategoryRepository(gormDB)
-	categoryService := service.NewCategoryService(categoryRepository)
-	categoryController := controller.NewCategoryController(categoryService)
-	app := internal.NewFiberApp(postController, commentController, tagController, categoryController)
-	return app
+	categoryRepo := repository.NewCategoryRepository(gormDB, logger)
+	categoryUseCase := biz.NewCategoryUseCase(categoryRepo, logger)
+	categoryService := service.NewCategoryService(logger, categoryUseCase)
+	commentRepo := repository.NewCommentRepository(gormDB, logger)
+	commentUseCase := biz.NewCommentUseCase(commentRepo, logger)
+	commentService := service.NewCommentService(logger, commentUseCase)
+	postRepo := repository.NewPostRepository(gormDB, logger)
+	postUseCase := biz.NewPostUseCase(postRepo, logger)
+	postService := service.NewPostService(logger, postUseCase)
+	tagRepo := repository.NewTagRepository(gormDB, logger)
+	tagUseCase := biz.NewTagUseCase(tagRepo, logger)
+	tagService := service.NewTagService(logger, tagUseCase)
+	httpServer := server.NewHTTPServer(logger, categoryService, commentService, postService, tagService)
+	grpcServer := server.NewGRPCServer(logger, categoryService, commentService, postService, tagService)
+	app := internal.NewKratosApp(logger, httpServer, grpcServer)
+	return app, func() {
+	}, nil
 }
 
 // wire.go:
@@ -42,9 +48,12 @@ var repositoryProviderSet = wire.NewSet(repository.NewCategoryRepository, reposi
 
 var serviceProviderSet = wire.NewSet(service.NewCategoryService, service.NewCommentService, service.NewPostService, service.NewTagService)
 
-var controllerProviderSet = wire.NewSet(controller.NewCategoryController, controller.NewCommentController, controller.NewPostController, controller.NewTagController)
+var bizProviderSet = wire.NewSet(biz.NewCategoryUseCase, biz.NewCommentUseCase, biz.NewPostUseCase, biz.NewTagUseCase)
 
-var providerSet = wire.NewSet(db.NewDBConn, internal.NewFiberApp, repositoryProviderSet,
+var serverProviderSet = wire.NewSet(server.NewHTTPServer, server.NewGRPCServer)
+
+var providerSet = wire.NewSet(db.NewDBConn, internal.NewKratosApp, serverProviderSet,
+	repositoryProviderSet,
 	serviceProviderSet,
-	controllerProviderSet,
+	bizProviderSet,
 )

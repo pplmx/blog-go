@@ -22,12 +22,12 @@ type TagRepo interface {
 
 // TagUseCase defines the use case for tag.
 type TagUseCase struct {
-	logger *log.Logger
-	repo   TagRepo
+	log  *log.Helper
+	repo TagRepo
 }
 
-func NewTagUseCase(repo TagRepo, logger *log.Logger) *TagUseCase {
-	return &TagUseCase{repo: repo, logger: logger}
+func NewTagUseCase(repo TagRepo, logger log.Logger) *TagUseCase {
+	return &TagUseCase{repo: repo, log: log.NewHelper(logger)}
 }
 
 func (uc *TagUseCase) CreateTag(c *Tag) error {

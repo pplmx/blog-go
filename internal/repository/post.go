@@ -6,6 +6,18 @@ import (
 	"gorm.io/gorm"
 )
 
+type postRepository struct {
+	db  *gorm.DB
+	log *log.Helper
+}
+
+func NewPostRepository(db *gorm.DB, logger log.Logger) biz.PostRepo {
+	return &postRepository{
+		db:  db,
+		log: log.NewHelper(logger),
+	}
+}
+
 func (r *postRepository) SavePost(post *biz.Post) error {
 	//TODO implement me
 	panic("implement me")
@@ -34,16 +46,4 @@ func (r *postRepository) DeletePost(u uint) error {
 func (r *postRepository) DeletePostBySlug(s string) error {
 	//TODO implement me
 	panic("implement me")
-}
-
-func NewPostRepository(db *gorm.DB, log *log.Logger) biz.PostRepo {
-	return &postRepository{
-		db:  db,
-		log: log,
-	}
-}
-
-type postRepository struct {
-	db  *gorm.DB
-	log *log.Logger
 }

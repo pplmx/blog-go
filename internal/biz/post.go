@@ -22,12 +22,12 @@ type PostRepo interface {
 
 // PostUseCase defines the use case for post.
 type PostUseCase struct {
-	logger *log.Logger
-	repo   PostRepo
+	log  *log.Helper
+	repo PostRepo
 }
 
-func NewPostUseCase(repo PostRepo, logger *log.Logger) *PostUseCase {
-	return &PostUseCase{repo: repo, logger: logger}
+func NewPostUseCase(repo PostRepo, logger log.Logger) *PostUseCase {
+	return &PostUseCase{repo: repo, log: log.NewHelper(logger)}
 }
 
 func (uc *PostUseCase) CreatePost(p *Post) error {
