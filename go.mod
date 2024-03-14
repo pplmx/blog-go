@@ -6,7 +6,7 @@ require (
 	github.com/glebarez/sqlite v1.10.0
 	github.com/go-kratos/kratos/v2 v2.7.2
 	github.com/google/wire v0.6.0
-	github.com/pplmx/pb v0.0.0-20240307032440-a2d9f6dfa4e2
+	github.com/pplmx/pb c3072bd67683
 	github.com/spf13/cobra v1.8.0
 	github.com/spf13/viper v1.18.2
 	gorm.io/driver/postgres v1.5.7
