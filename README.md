@@ -7,7 +7,7 @@ blog-go, written in go.
 
 Technologies used:
 
-- [Go Fiber](https://gofiber.io/) for web framework
+- [Kratos](https://go-kratos.dev/) for a microservice framework
 - [GORM](https://gorm.io/) for ORM
 - [lib/pq](https://github.com/lib/pq) for PostgreSQL driver in pure Go
 - [glebarez/go-sqlite](https://github.com/glebarez/go-sqlite) for SQLite driver in pure Go
@@ -38,7 +38,7 @@ make build
 
 Unless you explicitly state otherwise, any contribution intentionally submitted
 for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
-dual licensed as above, without any additional terms or conditions.
+dually licensed as above, without any additional terms or conditions.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
