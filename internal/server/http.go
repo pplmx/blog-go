@@ -29,8 +29,6 @@ func NewHTTPServer(
 		),
 	}
 
-	opts = append(opts, http.Network("tcp"))
-
 	addr := viper.GetString("http.addr")
 	if addr != "" {
 		opts = append(opts, http.Address(addr))

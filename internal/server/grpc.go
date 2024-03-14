@@ -29,8 +29,6 @@ func NewGRPCServer(
 		),
 	}
 
-	opts = append(opts, grpc.Network("grpc"))
-
 	addr := viper.GetString("grpc.addr")
 	if addr != "" {
 		opts = append(opts, grpc.Address(addr))

@@ -21,7 +21,7 @@ import (
 // Injectors from wire.go:
 
 // initApp init kratos application.
-func initApp(logger log.Logger) (*kratos.App, func(), error) {
+func initApp(logger log.Logger) (*kratos.App, error) {
 	gormDB := db.NewDBConn()
 	categoryRepo := repository.NewCategoryRepository(gormDB, logger)
 	categoryUseCase := biz.NewCategoryUseCase(categoryRepo, logger)
@@ -38,8 +38,7 @@ func initApp(logger log.Logger) (*kratos.App, func(), error) {
 	httpServer := server.NewHTTPServer(logger, categoryService, commentService, postService, tagService)
 	grpcServer := server.NewGRPCServer(logger, categoryService, commentService, postService, tagService)
 	app := internal.NewKratosApp(logger, httpServer, grpcServer)
-	return app, func() {
-	}, nil
+	return app, nil
 }
 
 // wire.go:

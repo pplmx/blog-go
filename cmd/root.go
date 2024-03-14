@@ -24,18 +24,14 @@ var rootCmd = &cobra.Command{
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		logger := log.NewStdLogger(os.Stdout)
-		app, cleanup, err := initApp(logger)
+		app, err := initApp(logger)
 		if err != nil {
 			panic(err)
 		}
-		defer cleanup()
 
-		// Listen from a different goroutine to allow for graceful shutdown
-		go func() {
-			if err := app.Run(); err != nil {
-				panic(err)
-			}
-		}()
+		if err := app.Run(); err != nil {
+			panic(err)
+		}
 	},
 }
 

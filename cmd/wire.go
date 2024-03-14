@@ -51,6 +51,6 @@ var providerSet = wire.NewSet(
 )
 
 // initApp init kratos application.
-func initApp(log.Logger) (*kratos.App, func(), error) {
+func initApp(log.Logger) (*kratos.App, error) {
 	panic(wire.Build(providerSet))
 }
