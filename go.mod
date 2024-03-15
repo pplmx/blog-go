@@ -3,7 +3,7 @@ module github.com/pplmx/blog-go
 go 1.22
 
 require (
-	github.com/glebarez/sqlite v1.10.0
+	github.com/glebarez/sqlite v1.11.0
 	github.com/go-kratos/kratos/v2 v2.7.2
 	github.com/google/wire v0.6.0
 	github.com/pplmx/pb v0.0.0-20240307032440-a2d9f6dfa4e2
