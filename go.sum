@@ -94,6 +94,10 @@ github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 h1:Jamvg5psRI
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/pplmx/pb v0.0.0-20240307032440-a2d9f6dfa4e2 h1:oTcaVCuoOSTbN9DxVbvuXBOwzEiSL+KATnuB24EY2k4=
 github.com/pplmx/pb v0.0.0-20240307032440-a2d9f6dfa4e2/go.mod h1:KF7sVOKwkio4QnwPeLm9NJzZDc+A/lKBw0pq3XOTOig=
+github.com/pplmx/pb v0.0.0-20240520031643-7082f8ae701e h1:r1Xca8/FVEIGr4dDV+4dApMpiDbqLz4pQHzuNXylPK4=
+github.com/pplmx/pb v0.0.0-20240520031643-7082f8ae701e/go.mod h1:KF7sVOKwkio4QnwPeLm9NJzZDc+A/lKBw0pq3XOTOig=
+github.com/pplmx/pb/blog v0.0.0-20240520031643-7082f8ae701e h1:PXZFXGVXbnn4MutLBjgxYG7/5NnUe2CKrS6idDmziNk=
+github.com/pplmx/pb/blog v0.0.0-20240520031643-7082f8ae701e/go.mod h1:dv7ArPvoxeXKeMkvcrhwdVQmhg+XTWaFughTCmKaNe8=
 github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec h1:W09IVJc94icq4NjY3clb7Lk8O1qJ8BdBEF8z0ibU0rE=
 github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec/go.mod h1:qqbHyh8v60DhA7CoWK5oRCqLrMHRGoxYCSS9EjAz6Eo=
 github.com/rogpeppe/go-internal v1.11.0 h1:cWPaGQEPrBb5/AsnsZesgZZ9yb1OQ+GOISoDNXVBh4M=
