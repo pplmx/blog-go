@@ -4,7 +4,7 @@ go 1.22
 
 require (
 	github.com/glebarez/sqlite v1.11.0
-	github.com/go-kratos/kratos/v2 v2.7.3
+	github.com/go-kratos/kratos/v2 v2.8.2
 	github.com/google/wire v0.6.0
 	github.com/pplmx/pb v0.0.0-20240520031643-7082f8ae701e
 	github.com/pplmx/pb/blog v0.0.0-20240520031643-7082f8ae701e
