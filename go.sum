@@ -87,8 +87,8 @@ github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10/go.mod h1
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 h1:Jamvg5psRIccs7FGNTlIRMkT8wgtp5eCXdBlqhYGL6U=
 github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/pplmx/pb/blog v0.0.0-20241201064241-6e415eabe38d h1:h3yleQSiNiHKdTwjAvwYi8Keme8AEqSZHXkS1Q6DZtU=
-github.com/pplmx/pb/blog v0.0.0-20241201064241-6e415eabe38d/go.mod h1:xIZk2qnDhNj+fAe8G6r1X18W4DawnLuM4LLUutUsEO0=
+github.com/pplmx/pb/blog v0.0.0-20241201072345-07c69a52f902 h1:3RSMvjBPXW3lY8ZWTTLkgv1lou7b7rMP7ycJEjgbrvs=
+github.com/pplmx/pb/blog v0.0.0-20241201072345-07c69a52f902/go.mod h1:xIZk2qnDhNj+fAe8G6r1X18W4DawnLuM4LLUutUsEO0=
 github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec h1:W09IVJc94icq4NjY3clb7Lk8O1qJ8BdBEF8z0ibU0rE=
 github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec/go.mod h1:qqbHyh8v60DhA7CoWK5oRCqLrMHRGoxYCSS9EjAz6Eo=
 github.com/rogpeppe/go-internal v1.11.0 h1:cWPaGQEPrBb5/AsnsZesgZZ9yb1OQ+GOISoDNXVBh4M=
