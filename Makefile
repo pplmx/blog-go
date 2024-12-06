@@ -32,6 +32,10 @@ build:
 test:
 	@go test -v ./...
 
+# update my own pb
+up:
+	@go get -u github.com/pplmx/pb/blog
+
 # Show help
 help:
 	@echo ""
