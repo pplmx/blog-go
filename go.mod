@@ -6,7 +6,7 @@ require (
 	github.com/glebarez/sqlite v1.11.0
 	github.com/go-kratos/kratos/v2 v2.8.2
 	github.com/google/wire v0.6.0
-	github.com/pplmx/pb/blog v0.0.0-20241201072345-07c69a52f902
+	github.com/pplmx/pb/blog v0.0.0-20241206115342-2f22d4a3d6d2
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/viper v1.19.0
 	google.golang.org/protobuf v1.35.2
