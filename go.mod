@@ -7,7 +7,7 @@ require (
 	github.com/go-kratos/kratos/v2 v2.8.2
 	github.com/google/wire v0.6.0
 	github.com/pplmx/pb/blog v0.0.0-20241206125115-b0306a987a92
-	github.com/spf13/cobra v1.8.1
+	github.com/spf13/cobra v1.10.1
 	github.com/spf13/viper v1.19.0
 	google.golang.org/protobuf v1.35.2
 	gorm.io/driver/postgres v1.5.11
@@ -44,7 +44,7 @@ require (
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/cast v1.7.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
+	github.com/spf13/pflag v1.0.9 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	go.opentelemetry.io/otel v1.32.0 // indirect
 	go.opentelemetry.io/otel/metric v1.32.0 // indirect
