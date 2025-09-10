@@ -4,7 +4,7 @@ go 1.23
 
 require (
 	github.com/glebarez/sqlite v1.11.0
-	github.com/go-kratos/kratos/v2 v2.8.2
+	github.com/go-kratos/kratos/v2 v2.9.0
 	github.com/google/wire v0.6.0
 	github.com/pplmx/pb/blog v0.0.0-20241206125115-b0306a987a92
 	github.com/spf13/cobra v1.8.1
@@ -50,9 +50,9 @@ require (
 	go.opentelemetry.io/otel/metric v1.32.0 // indirect
 	go.opentelemetry.io/otel/trace v1.32.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/crypto v0.30.0 // indirect
+	golang.org/x/crypto v0.31.0 // indirect
 	golang.org/x/exp v0.0.0-20241204233417-43b7b7cde48d // indirect
-	golang.org/x/net v0.32.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
