@@ -5,7 +5,7 @@ go 1.23
 require (
 	github.com/glebarez/sqlite v1.11.0
 	github.com/go-kratos/kratos/v2 v2.8.2
-	github.com/google/wire v0.6.0
+	github.com/google/wire v0.7.0
 	github.com/pplmx/pb/blog v0.0.0-20241206125115-b0306a987a92
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/viper v1.19.0
